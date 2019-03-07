@@ -1,0 +1,17 @@
+{
+  "name": "dmath",
+  "preferGlobal": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "dmath": "src/app.js"
+  },
+  "author": "Flavio Barci",
+  "license": "MIT",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  }
+}
