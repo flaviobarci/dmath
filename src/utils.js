@@ -34,7 +34,7 @@ const stringToSets = setsString => {
     sets.push(stringToElement(elementsArray[arr]));
   }
 
-  return sets;
+  return Object.assign({}, ...sets);
 };
 
 module.exports = {

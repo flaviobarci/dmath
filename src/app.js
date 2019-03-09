@@ -3,12 +3,12 @@
 // Importing file system lib and shell interaction lib
 const fs = require("fs");
 const rl = require("readline-sync");
-const u = require("./utils")
-
+const u = require("./utils");
+const { doUnion } = require("./operations");
 
 // Getting user input from argv
 const userArgs = process.argv.slice(2);
-const fileName = "test.txt"//userArgs[0];
+const fileName = "test.txt"; //userArgs[0];
 const filePath = process.cwd() + "/" + fileName;
 
 if (fileName === undefined) {
@@ -27,19 +27,25 @@ let raw = fs.readFileSync(filePath, { encoding: "utf8" }).toString();
 
 console.log("File read.");
 
-let set = u.stringToSets(raw);
+let sets = u.stringToSets(raw);
 
-console.log(set);
+let exit = false;
+while (!exit) {
+  console.clear();
+  console.log(sets);
+  console.log(" ----------------------------------- ");
+  console.log("| What would you like to do?        |");
+  console.log("| 0 - Quit                          |");
+  console.log("| 1 - Union                         |");
 
-// const setsExp = /[A-Z][ ]{1,}=[ ]{1,}{.*?}/g;
-
-// const setsArray = raw.match(setExp);
-
-// const elementExp = /[a-z][ ]{1,}=[ ]{1,}[0-9]{1,}/g;
-
-// const elementsArray = raw.match(elementExp);
-
-// while (true) {
-//   let something = rl.question("Say something: ");
-//   console.log(something);
-// }
+  let input = rl.question("> ");
+  switch (input) {
+    case "0":
+      exit = true;
+      break;
+    case "1":
+      doUnion(sets);
+      rl.question("Enter to continue...");
+      break;
+  }
+}
