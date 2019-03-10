@@ -4,7 +4,7 @@
 const fs = require("fs");
 const rl = require("readline-sync");
 const u = require("./utils");
-const { doUnion } = require("./operations");
+const { doUnion, doIntersection } = require("./operations");
 
 // Getting user input from argv
 const userArgs = process.argv.slice(2);
@@ -37,6 +37,7 @@ while (!exit) {
   console.log("| What would you like to do?        |");
   console.log("| 0 - Quit                          |");
   console.log("| 1 - Union                         |");
+  console.log("| 2 - Intersection                  |");
 
   let input = rl.question("> ");
   switch (input) {
@@ -45,7 +46,10 @@ while (!exit) {
       break;
     case "1":
       doUnion(sets);
-      rl.question("Enter to continue...");
+      rl.question("Press Enter to continue...");
       break;
+    case "2":
+      doIntersection(sets);
+      rl.question("Press Enter to continue...");
   }
 }
