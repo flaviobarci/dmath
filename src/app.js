@@ -15,7 +15,7 @@ const {
 
 // Getting user input from argv
 const userArgs = process.argv.slice(2);
-const fileName = "test.txt"; //userArgs[0];
+const fileName = userArgs[0];
 const filePath = process.cwd() + "/" + fileName;
 
 if (fileName === undefined) {
