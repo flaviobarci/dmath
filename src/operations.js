@@ -65,7 +65,28 @@ const doIntersection = allSets => {
   console.log("Result: ", intersection(allSets, sets));
 };
 
+const belongs = (first, second, allSets) => {
+  let belongs = true;
+  for (el of allSets[first]) {
+    if (!allSets[second].includes(el)) {
+      belongs = false;
+    }
+  }
+  return belongs;
+};
+
+const doBelongs = allSets => {
+  let firstSet = rl.question("Select first set: ");
+  let secondSet = rl.question("Select second set: ");
+  if (belongs(firstSet, secondSet, allSets)) {
+    console.log("Yes, it belongs.");
+  } else {
+    console.log("It does not belong.");
+  }
+};
+
 module.exports = {
   doUnion: doUnion,
-  doIntersection: doIntersection
+  doIntersection: doIntersection,
+  doBelongs: doBelongs
 };
