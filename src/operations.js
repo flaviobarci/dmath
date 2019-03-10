@@ -65,7 +65,7 @@ const doIntersection = allSets => {
   console.log("Result: ", intersection(allSets, sets));
 };
 
-const belongs = (first, second, allSets) => {
+const subset = (first, second, allSets) => {
   let belongs = true;
   for (el of allSets[first]) {
     if (!allSets[second].includes(el)) {
@@ -78,15 +78,56 @@ const belongs = (first, second, allSets) => {
 const doBelongs = allSets => {
   let firstSet = rl.question("Select first set: ");
   let secondSet = rl.question("Select second set: ");
-  if (belongs(firstSet, secondSet, allSets)) {
+  if (subset(firstSet, secondSet, allSets)) {
     console.log("Yes, it belongs.");
   } else {
     console.log("It does not belong.");
   }
 };
 
+const doProperSubset = allSets => {
+  let firstSet = rl.question("Select first set: ");
+  let secondSet = rl.question("Select second set: ");
+  let isSubset = subset(firstSet, secondSet, allSets);
+  if (isSubset && allSets[firstSet].length === allSets[secondSet].length) {
+    console.log("It is not a proper subset.");
+  } else {
+    console.log("It is a proper subset");
+  }
+};
+
+const doSubset = allSets => {
+  let firstSet = rl.question("Select first set: ");
+  let secondSet = rl.question("Select second set: ");
+  if (subset(firstSet, secondSet, allSets)) {
+    console.log("Yes, it is a subset.");
+  } else {
+    console.log("It is not a subset.");
+  }
+};
+
+const cartesianProduct = (first, second, allSets) => {
+  let result = [];
+
+  for (i = 0; i < allSets[first].length; i++) {
+    for (j = 0; j < allSets[first].length; j++) {
+      result.push([allSets[first][i], allSets[second][j]]);
+    }
+  }
+
+  return result;
+};
+const doCartesianProduct = allSets => {
+  let firstSet = rl.question("Select first set: ");
+  let secondSet = rl.question("Select second set: ");
+  console.log("Result: ", cartesianProduct(firstSet, secondSet, allSets));
+};
+
 module.exports = {
   doUnion: doUnion,
   doIntersection: doIntersection,
-  doBelongs: doBelongs
+  doBelongs: doBelongs,
+  doSubset: doSubset,
+  doProperSubset: doProperSubset,
+  doCartesianProduct: doCartesianProduct
 };

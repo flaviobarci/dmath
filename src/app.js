@@ -4,7 +4,14 @@
 const fs = require("fs");
 const rl = require("readline-sync");
 const u = require("./utils");
-const { doUnion, doIntersection, doBelongs } = require("./operations");
+const {
+  doUnion,
+  doIntersection,
+  doBelongs,
+  doSubset,
+  doProperSubset,
+  doCartesianProduct
+} = require("./operations");
 
 // Getting user input from argv
 const userArgs = process.argv.slice(2);
@@ -39,6 +46,9 @@ while (!exit) {
   console.log("| 1 - Union                         |");
   console.log("| 2 - Intersection                  |");
   console.log("| 3 - Belongs                       |");
+  console.log("| 4 - Subset                        |");
+  console.log("| 5 - Proper Subset                 |");
+  console.log("| 6 - Cartesian Product             |");
 
   let input = rl.question("> ");
   switch (input) {
@@ -55,6 +65,18 @@ while (!exit) {
       break;
     case "3":
       doBelongs(sets);
+      rl.question("Press Enter to continue...");
+      break;
+    case "4":
+      doSubset(sets);
+      rl.question("Press Enter to continue...");
+      break;
+    case "5":
+      doProperSubset(sets);
+      rl.question("Press Enter to continue...");
+      break;
+    case "6":
+      doCartesianProduct(sets);
       rl.question("Press Enter to continue...");
       break;
   }
