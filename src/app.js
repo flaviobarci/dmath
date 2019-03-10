@@ -10,12 +10,13 @@ const {
   doBelongs,
   doSubset,
   doProperSubset,
-  doCartesianProduct
+  doCartesianProduct,
+  doPowerset
 } = require("./operations");
 
 // Getting user input from argv
 const userArgs = process.argv.slice(2);
-const fileName = userArgs[0];
+const fileName = "test.txt"; //userArgs[0];
 const filePath = process.cwd() + "/" + fileName;
 
 if (fileName === undefined) {
@@ -49,7 +50,7 @@ while (!exit) {
   console.log("| 4 - Subset                        |");
   console.log("| 5 - Proper Subset                 |");
   console.log("| 6 - Cartesian Product             |");
-
+  console.log("| 7 - Powerset                      |");
   let input = rl.question("> ");
   switch (input) {
     case "0":
@@ -77,6 +78,10 @@ while (!exit) {
       break;
     case "6":
       doCartesianProduct(sets);
+      rl.question("Press Enter to continue...");
+      break;
+    case "7":
+      doPowerset(sets);
       rl.question("Press Enter to continue...");
       break;
   }

@@ -123,11 +123,24 @@ const doCartesianProduct = allSets => {
   console.log("Result: ", cartesianProduct(firstSet, secondSet, allSets));
 };
 
+const powerset = set => {
+  return set.reduce(
+    (subsets, value) => subsets.concat(subsets.map(set => [value, ...set])),
+    [[]]
+  );
+};
+
+const doPowerset = allSets => {
+  let set = rl.question("Select set: ");
+  console.log("Result: ", powerset(allSets[set]));
+};
+
 module.exports = {
   doUnion: doUnion,
   doIntersection: doIntersection,
   doBelongs: doBelongs,
   doSubset: doSubset,
   doProperSubset: doProperSubset,
-  doCartesianProduct: doCartesianProduct
+  doCartesianProduct: doCartesianProduct,
+  doPowerset: doPowerset
 };
